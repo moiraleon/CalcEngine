@@ -2,15 +2,19 @@ package com.pluralsight.calcengine;
 
 public class Main {
 
-	public static void main(String[]args){
+	public static void main(String[]args) {
 //adding an array of data
-	double[] leftVals = {100.0d, 25.0d, 225.0d, 11.0d};
-	double[] rightVals ={50.0d,92.0d,17.0d,3.0d};
-	char[] opCodes ={'d','a','s','m'};
-	double[] results = new double[opCodes.length];
+		double[] leftVals = {100.0d, 25.0d, 225.0d, 11.0d};
+		double[] rightVals = {50.0d, 92.0d, 17.0d, 3.0d};
+		char[] opCodes = {'d', 'a', 's', 'm'};
+		double[] results = new double[opCodes.length];
+		//adding args
+		if (args.length == 0) {
+
+
 //creating array for loop
-	for (int i =0; i<opCodes.length; i++){
-		results[i] = execute(opCodes[i], leftVals[i],rightVals[i]);
+			for (int i = 0; i < opCodes.length; i++) {
+				results[i] = execute(opCodes[i], leftVals[i], rightVals[i]);
 //		switch (opCodes[i]) {
 //			case 'a':
 //				results[i] = leftVals[i] + rightVals[i];
@@ -33,14 +37,14 @@ public class Main {
 //				break;
 //		}
 
-	}
+			}
 //    public static void main(String[] args) {
 //	double value1 = 100.0d;
 //	double value2 = 0.0d;
 //	double result = 0.0d;
 //	char opCode = 'd';
 
-	//adding a switch statement
+			//adding a switch statement
 //	switch (opCode){
 //		case 'a':
 //			result = value1 + value2;
@@ -78,11 +82,24 @@ public class Main {
 //		System.out.println("Invalid opCode"+opCode);
 //		result = 0.0d;
 //	}
-		//adding a for each loop
+			//adding a for each loop
 
-		for(double currentResult: results)
-	System.out.println(currentResult);
-    }
+			for (double currentResult : results)
+				System.out.println(currentResult);
+		} else if (args.length ==3)
+			handleCommandLine(args);
+		else
+			System.out.println("Please provide an operation code and 2 numeric values");
+	}
+
+	private static void handleCommandLine(String[] args) {
+		char opCode = args[0].charAt(0);
+		double leftVal =Double.parseDouble(args[1]);
+		double rightVal = Double.parseDouble(args[2]);
+		double result =execute(opCode, leftVal, rightVal);
+		System.out.println(result);
+	}
+
 	//adding a method
 	static double execute(char opCode, double leftVal, double rightVal){
 		double result;
